@@ -1,0 +1,20 @@
+# Obtener la imagen de Docker Hub (Solo se hace la primera vez)
+$ docker pull mongo
+
+# Correr el contenedor en los puertos 27017, 27018 y 27019
+$ docker run -p 27017:27017 -v [local_path]:/data/db --name mongo -d mongo
+
+# Entrar al contenedor
+$ docker exec -it mongodb bash
+
+###### Una vez dentro del contenedor
+-------------------------------------------
+
+# Lanzar el cliente shell de MongoDB
+$ mongo
+
+# Pasarse a modo 'admin'
+$ use admin
+
+# Crear un usuario para acceder desde fuera del contenedor
+$ db.createUser( {user:"neo", pwd:"Test12345.", roles:["root"]} )

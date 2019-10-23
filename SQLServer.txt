@@ -1,0 +1,15 @@
+# Tomar la imagen de SQL Server 2019 (Solo se hace la primera vez)
+$ sudo docker pull mcr.microsoft.com/mssql/server:2019-CTP3.2-ubuntu
+
+# Correr el comando
+# - ACCEPT_EULA → Aceptar la licencia
+# - SA_PASSWORD → Se especifica la contraseña del usuario sa
+# - name → nombre del contenedor
+$ sudo docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=<YourStrong@Passw0rd>" \
+   -p 1433:1433 --name sql1 \
+   -d mcr.microsoft.com/mssql/server:2019-CTP3.2-ubuntu
+
+# Cambiar contraseña a sa
+$ sudo docker exec -it sql1 /opt/mssql-tools/bin/sqlcmd \
+   -S localhost -U SA -P "<YourStrong@Passw0rd>" \
+   -Q 'ALTER LOGIN SA WITH PASSWORD="<YourNewStrong@Passw0rd>"'

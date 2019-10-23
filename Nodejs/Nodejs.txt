@@ -1,0 +1,5 @@
+# Construir la imagen a partir del Dockerfile
+$ docker image build -t [nombre_imagen] .
+
+# Correr contenedor a partir de una imagen
+docker run -d -p [puerto]:[puerto] --name [nombre_contenedor] [nombre_imagen]
